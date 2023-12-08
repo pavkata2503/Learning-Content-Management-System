@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "GTo+o5IGpKqLg7z1iyRIVUakeIxWW8wgy74ykdSme0M/9AUpYHeFwTES0VVbAg+lyNmgKHew6WJWaRPrMB6A0A==",
+  "dgSpecHash": "mdOZEZi7apOvyF6Zxn74YYU7u8R/ABqlIfy+vykCFhU0/JwCB3bOFxJGxIx3nc1tq57a+8YoJvznaEX7HGfYxA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\pavka\\OneDrive\\Documents\\Програвиране C#\\За училище\\Diplomna Rabota\\Learning-Content-Models\\Learning-Content-Models\\Learning-Content-Models.csproj",
+  "projectFilePath": "C:\\Users\\pavka\\OneDrive\\Documents\\Програвиране C#\\За училище\\Learning-Content-Management-System\\Learning-Content-Models\\Learning-Content-Models\\Learning-Content-Models.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\pavka\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\pavka\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
