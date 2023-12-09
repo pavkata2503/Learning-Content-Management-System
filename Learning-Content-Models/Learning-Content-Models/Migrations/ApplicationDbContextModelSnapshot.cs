@@ -154,12 +154,6 @@ namespace Learning_Content_Models.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("ApplicationUserId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ApplicationUserId1")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
@@ -168,6 +162,10 @@ namespace Learning_Content_Models.Migrations
 
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedByName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -181,25 +179,23 @@ namespace Learning_Content_Models.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("TypeFileId")
+                        .HasColumnType("int");
+
                     b.Property<string>("URL")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("VidId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("ApplicationUserId1");
 
                     b.HasIndex("CategoryId");
 
-                    b.HasIndex("VidId");
+                    b.HasIndex("TypeFileId");
 
                     b.ToTable("StudyMaterials");
                 });
 
-            modelBuilder.Entity("Learning_Content_Models.Models.Vid", b =>
+            modelBuilder.Entity("Learning_Content_Models.Models.TypeFile", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -213,7 +209,7 @@ namespace Learning_Content_Models.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Vids");
+                    b.ToTable("TypeFiles");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -360,27 +356,21 @@ namespace Learning_Content_Models.Migrations
 
             modelBuilder.Entity("Learning_Content_Models.Models.StudyMaterial", b =>
                 {
-                    b.HasOne("Learning_Content_Models.Models.ApplicationUser", "ApplicationUser")
-                        .WithMany("StudyMaterials")
-                        .HasForeignKey("ApplicationUserId1");
-
                     b.HasOne("Learning_Content_Models.Models.Category", "Category")
                         .WithMany("StudyMaterials")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Learning_Content_Models.Models.Vid", "Vid")
+                    b.HasOne("Learning_Content_Models.Models.TypeFile", "TypeFile")
                         .WithMany("StudyMaterials")
-                        .HasForeignKey("VidId")
+                        .HasForeignKey("TypeFileId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("ApplicationUser");
-
                     b.Navigation("Category");
 
-                    b.Navigation("Vid");
+                    b.Navigation("TypeFile");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -437,8 +427,6 @@ namespace Learning_Content_Models.Migrations
             modelBuilder.Entity("Learning_Content_Models.Models.ApplicationUser", b =>
                 {
                     b.Navigation("Messages");
-
-                    b.Navigation("StudyMaterials");
                 });
 
             modelBuilder.Entity("Learning_Content_Models.Models.Category", b =>
@@ -446,7 +434,7 @@ namespace Learning_Content_Models.Migrations
                     b.Navigation("StudyMaterials");
                 });
 
-            modelBuilder.Entity("Learning_Content_Models.Models.Vid", b =>
+            modelBuilder.Entity("Learning_Content_Models.Models.TypeFile", b =>
                 {
                     b.Navigation("StudyMaterials");
                 });

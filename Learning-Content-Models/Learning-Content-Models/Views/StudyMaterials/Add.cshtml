@@ -10,11 +10,11 @@
         <input asp-for="Title" class="form-control" />
     </div>
     <div class="form-group">
-        <label asp-for="VidId"></label>
+        <label asp-for="TypeFileId"></label>
         @* <select asp-for="VidId" asp-items="@(new SelectList(ViewBag.Vids, "Title"))" class="form-control">
         <option value="">-- Select Vid --</option>
         </select> *@
-        <input asp-for="VidId" class="form-control" />
+        <input asp-for="TypeFileId" class="form-control" />
     </div>
     <div class="form-group">
         <label asp-for="URL"></label>
@@ -46,7 +46,11 @@
     <div class="form-group">
         <label asp-for="Class"></label>
         <input asp-for="Class" class="form-control" />
-    </div>
+    </div>@* 
+    @if (true)
+    {
+        Model.CreatedByName = Model.ApplicationUser.Name;
+    } *@
 
     <button type="submit" class="btn btn-primary">Create</button>
 </form>

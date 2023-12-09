@@ -8,9 +8,6 @@ namespace Learning_Content_Models.Models
 		[Key]
 		public int Id { get; set; }
 		public string Title { get; set; }
-		public int ApplicationUserId { get; set; }
-
-		public ApplicationUser ApplicationUser { get; set; }
 		public string URL { get; set; }	
 		public string Description { get; set; }
 
@@ -20,11 +17,14 @@ namespace Learning_Content_Models.Models
 		public Category Category { get; set; }
 
 		//public string Type { get; set; }
-		public int VidId { get; set; }
-		public Vid Vid { get; set; }
+		public int TypeFileId { get; set; }
+		public TypeFile TypeFile { get; set; }
 		public string Subject { get; set; }
 		public int Class { get; set; }
 		public DateTime CreateDate { get; set; }
+
+		// New property to store the name of the user who created the study material
+		public string CreatedByName { get; set; }
 
 	}
 }

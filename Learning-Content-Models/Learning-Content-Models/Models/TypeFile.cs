@@ -2,7 +2,7 @@
 
 namespace Learning_Content_Models.Models
 {
-	public class Vid
+	public class TypeFile
 	{
 		[Key]
 		public int Id { get; set; }

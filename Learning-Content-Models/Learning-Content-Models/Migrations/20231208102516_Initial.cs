@@ -66,7 +66,7 @@ namespace Learning_Content_Models.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Vids",
+                name: "TypeFiles",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -75,7 +75,7 @@ namespace Learning_Content_Models.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Vids", x => x.Id);
+                    table.PrimaryKey("PK_TypeFiles", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -214,24 +214,18 @@ namespace Learning_Content_Models.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ApplicationUserId = table.Column<int>(type: "int", nullable: false),
-                    ApplicationUserId1 = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     URL = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CategoryId = table.Column<int>(type: "int", nullable: false),
-                    VidId = table.Column<int>(type: "int", nullable: false),
+                    TypeFileId = table.Column<int>(type: "int", nullable: false),
                     Subject = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Class = table.Column<int>(type: "int", nullable: false),
-                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedByName = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_StudyMaterials", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_StudyMaterials_AspNetUsers_ApplicationUserId1",
-                        column: x => x.ApplicationUserId1,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_StudyMaterials_Categories_CategoryId",
                         column: x => x.CategoryId,
@@ -239,9 +233,9 @@ namespace Learning_Content_Models.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_StudyMaterials_Vids_VidId",
-                        column: x => x.VidId,
-                        principalTable: "Vids",
+                        name: "FK_StudyMaterials_TypeFiles_TypeFileId",
+                        column: x => x.TypeFileId,
+                        principalTable: "TypeFiles",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -291,19 +285,14 @@ namespace Learning_Content_Models.Migrations
                 column: "ApplicationUserId1");
 
             migrationBuilder.CreateIndex(
-                name: "IX_StudyMaterials_ApplicationUserId1",
-                table: "StudyMaterials",
-                column: "ApplicationUserId1");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_StudyMaterials_CategoryId",
                 table: "StudyMaterials",
                 column: "CategoryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_StudyMaterials_VidId",
+                name: "IX_StudyMaterials_TypeFileId",
                 table: "StudyMaterials",
-                column: "VidId");
+                column: "TypeFileId");
         }
 
         /// <inheritdoc />
@@ -340,7 +329,7 @@ namespace Learning_Content_Models.Migrations
                 name: "Categories");
 
             migrationBuilder.DropTable(
-                name: "Vids");
+                name: "TypeFiles");
         }
     }
 }

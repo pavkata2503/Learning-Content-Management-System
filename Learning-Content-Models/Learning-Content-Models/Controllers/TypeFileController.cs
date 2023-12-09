@@ -7,21 +7,21 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Learning_Content_Models.Controllers
 {
-    public class VidController : Controller
+    public class TypeFileController : Controller
     {
         private readonly ApplicationDbContext context;
 
-        public VidController(ApplicationDbContext context)
+        public TypeFileController(ApplicationDbContext context)
         {
             this.context = context;
         }
 
         public IActionResult Index()
         {
-            var vids = context.Vids
+            var typeFiles = context.TypeFiles
             .Include(m => m.StudyMaterials).ToList();
 
-            return View(vids);
+            return View(typeFiles);
         }
         public IActionResult Add()
         {
@@ -31,9 +31,9 @@ namespace Learning_Content_Models.Controllers
         }
 
         [HttpPost]
-        public IActionResult Add(Vid vid)
+        public IActionResult Add(TypeFile typeFiles)
         {
-            context.Vids.Add(vid);
+            context.TypeFiles.Add(typeFiles);
             context.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -41,42 +41,42 @@ namespace Learning_Content_Models.Controllers
         //Update Genre
         public IActionResult Edit(int id)
         {
-            var vid = context.Vids
+            var typeFiles = context.TypeFiles
                 .Include(m => m.StudyMaterials)
                 .FirstOrDefault(m => m.Id == id);
-            if (vid == null)
+            if (typeFiles == null)
             {
                 return NotFound();
             }
 
             ViewBag.StudyMaterials = context.StudyMaterials.ToList();
 
-            return View(vid);
+            return View(typeFiles);
         }
 
         [HttpPost]
-        public IActionResult Edit(Vid vid)
+        public IActionResult Edit(TypeFile typeFiles)
         {
             if (ModelState.IsValid)
             {
-                context.Vids.Update(vid);
+                context.TypeFiles.Update(typeFiles);
                 context.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(vid);
+            return View(typeFiles);
         }
 
         [HttpPost]
         public IActionResult Delete(int id)
         {
-            var vid = context.Vids.Find(id);
+            var typeFile = context.TypeFiles.Find(id);
 
-            if (vid == null)
+            if (typeFile == null)
             {
                 return NotFound();
             }
 
-            context.Vids.Remove(vid);
+            context.TypeFiles.Remove(typeFile);
             context.SaveChanges();
             return RedirectToAction("Index");
 
